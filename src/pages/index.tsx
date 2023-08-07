@@ -29,18 +29,19 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button>Open</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <AlertDialog>
+      <AlertDialog>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button>Open</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
             <AlertDialogTrigger asChild>
               <DropdownMenuItem>Profile</DropdownMenuItem>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+          </DropdownMenuContent>
+          <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
@@ -53,9 +54,8 @@ export default function Home() {
                 <AlertDialogAction>Continue</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
-          </AlertDialog>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        </DropdownMenu>
+      </AlertDialog>
     </main>
   );
 }
