@@ -7,36 +7,26 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function ShadCNNestedMenu() {
-  const [dropdown, setDropdown] = useState(false);
-  const [alertDialog, setAlertDialog] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [ddOpen, setDDOpen] = useState(false);
-
-  // useEffect(() => {
-  //   const to = setInterval(() => {
-  //     setDropdown(isOpen => !isOpen);
-  //   }, 500);
-
-  //   return () => clearInterval(to);
-  // }, []);
+  const [optionsDropdown, setOptionsDropdown] = useState(false);
+  const [detailsModal, setDetailsModal] = useState(false);
+  const [moreOptionsDropdown, setMoreOptionsDropdown] = useState(false);
+  const [moreDetailsModal, setMoreDetailsModal] = useState(false);
 
   return (
     <div className="h-screen grid place-items-center">
-      <DropdownMenu open={dropdown} onOpenChange={setDropdown}>
+      <DropdownMenu open={optionsDropdown} onOpenChange={setOptionsDropdown}>
         <DropdownMenuTrigger>
           <Button>Options</Button>
         </DropdownMenuTrigger>
@@ -44,7 +34,7 @@ export default function ShadCNNestedMenu() {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Button
-            onClick={() => setAlertDialog(true)}
+            onClick={() => setDetailsModal(true)}
             variant="item"
             size="item"
           >
@@ -53,7 +43,7 @@ export default function ShadCNNestedMenu() {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <AlertDialog open={alertDialog} onOpenChange={setAlertDialog}>
+      <AlertDialog open={detailsModal} onOpenChange={setDetailsModal}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -65,7 +55,10 @@ export default function ShadCNNestedMenu() {
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-            <DropdownMenu open={ddOpen} onOpenChange={setDDOpen}>
+            <DropdownMenu
+              open={moreOptionsDropdown}
+              onOpenChange={setMoreOptionsDropdown}
+            >
               <DropdownMenuTrigger asChild>
                 <Button>See more options</Button>
               </DropdownMenuTrigger>
@@ -73,7 +66,7 @@ export default function ShadCNNestedMenu() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <Button
-                  onClick={() => setModal(true)}
+                  onClick={() => setMoreDetailsModal(true)}
                   variant="item"
                   size="item"
                 >
@@ -82,7 +75,10 @@ export default function ShadCNNestedMenu() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <AlertDialog open={modal} onOpenChange={setModal}>
+            <AlertDialog
+              open={moreDetailsModal}
+              onOpenChange={setMoreDetailsModal}
+            >
               <AlertDialogContent className="w-[30rem] translate-y-6 bg-orange-500">
                 <AlertDialogHeader>
                   <AlertDialogTitle>EVEN MORE DETAILS?</AlertDialogTitle>
